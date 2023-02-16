@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+}
+/*          
+------------------------ navigation ----------------------------------
+*/
+.nav-wrraper {
+  position: relative;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.4);
+}
+.hero-section {
+  position: absolute;
+  height: 300px;
+  background: url("https://c4.wallpaperflare.com/wallpaper/862/449/162/jack-reacher-star-wars-interstellar-movie-john-wick-wallpaper-preview.jpg")
+    no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.nav-bar {
+  z-index: 10;
+}
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  color: white;
+  font-size: 20px;
+}
+/*
+------------------------ Search ---------------------------------------
+*/
+.form-wrraper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+  z-index: 100;
+}
+.search-form {
+  border: 0.7px solid rgba(0, 0, 0, 0.4);
+  width: 80%;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+.maginfy-icon {
+  margin-left: 15px;
+}
+.search-form input {
+  flex: 4;
+  outline: none;
+  border: none;
+  word-break: keep-all;
+  padding: 0.52rem;
+  font-size: 16px;
+}
+.submit-button {
+  display: inline-block;
+  border: none;
+  outline: none;
+  border-left: 0.5px solid rgb(201, 201, 201);
+  background-color: #eee;
+  cursor: pointer;
+  flex: 1;
+  padding: 0.6rem;
+  transition: all 0.2s ease-in-out;
+}
+.submit-button:active {
+  background-color: rgb(156, 155, 155);
+}
+/*
+------ movies svg
+*/
+.movie-svg {
+  height: 150px;
+  margin: 0 auto;
+  display: block;
+}
