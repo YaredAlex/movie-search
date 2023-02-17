@@ -129,6 +129,7 @@
 }
 .poster-img {
   width: 200px;
+  border-radius: 5px;
 }
 .star-icon {
   font-size: 12px;

@@ -8,21 +8,39 @@ const SearchMovie = () => {
   const [search, setSearch] = useState("");
   const [movie, setMovies] = useState([]);
   const [error, setError] = useState("");
-  const fetchData = (searcher) => {
+  const [detail,setDetail] = useState({});
+  const fetchData = async(searcher) => {
     let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
-    fetch(url, {
+   const data =  fetch(url, {
       method: "get",
     })
       .then((res) => res.json())
       .then((res) => {
         setError("");
-        if (res.Response === "True") setMovies(res.Search);
+        if (res.Response === "True") 
+        {
+           return res.Search.map(async(elem)=>{
+             return  await getDetail(elem.imdbID)
+          })
+        };
       })
       .catch((e) => setError("unable to connect please check your Internet!"));
+      return data;
   };
+  const getDetail = async(data)=>{
+    let detail;
+    let url = `http://www.omdbapi.com/?i=${data}&apikey=f0d64179`
+    const result = await fetch(url)
+    const result_json = result.json()
+    return result_json
+  }
+  const readData=async(searcher)=>{
+    console.log(await fetchData())
+
+  }
   const handleChange = (event) => {
     setSearch(event.target.value);
-    fetchData(event.target.value);
+    readData(event.target.value);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
