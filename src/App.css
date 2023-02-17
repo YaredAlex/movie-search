@@ -62,13 +62,16 @@
   z-index: 100;
 }
 .search-form {
-  border: 0.7px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   width: 80%;
   border-radius: 5px;
   overflow: hidden;
   display: flex;
   align-items: center;
   background-color: white;
+  -webkit-box-shadow: 3px 10px 36px 0px rgba(0,0,0,0.38);
+-moz-box-shadow: 3px 10px 36px 0px rgba(0,0,0,0.38);
+box-shadow: 3px 10px 36px 0px rgba(0,0,0,0.38);
 }
 .maginfy-icon {
   margin-left: 15px;
@@ -122,13 +125,14 @@
   list-style: none;
 }
 .list-of-movies ul li {
-  border-bottom: 0.4px solid rgb(183, 181, 181);
-  padding: 10px 7px;
+  border-bottom: 2px solid rgb(227, 226, 226);
+  padding: 30px 7px;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 .poster-img {
-  width: 200px;
+  width: 170px;
   border-radius: 5px;
 }
 .star-icon {
@@ -143,16 +147,22 @@
   align-items: center;
   gap: 20px;
 }
+.movie-plot{
+  color:rgb(92, 92, 92) ;
+}
 /*
 ------adding to watch list
 */
-.addto-watchlist {
+.watchlist {
   transition: all 0.3s ease-in-out;
-  width: 150px;
-  padding: 10px 12px;
+  padding: 10px 0px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  column-gap: 20px;
+}
+.addto-watchlist{
+  padding: 5px 12px;
 }
 .addto-watchlist:hover {
   background-color: rgb(219, 219, 219);

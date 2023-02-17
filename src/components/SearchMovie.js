@@ -10,6 +10,7 @@ const SearchMovie = () => {
   const [error, setError] = useState("");
   const [detail,setDetail] = useState({});
   const fetchData = async(searcher) => {
+    setMovies([]);
     let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
    const data =  fetch(url, {
       method: "get",
@@ -19,8 +20,8 @@ const SearchMovie = () => {
         setError("");
         if (res.Response === "True") 
         {
-           return res.Search.map(async(elem)=>{
-             return  await getDetail(elem.imdbID)
+            res.Search.map((elem)=>{
+             return  getDetail(elem.imdbID)
           })
         };
       })
@@ -31,11 +32,11 @@ const SearchMovie = () => {
     let detail;
     let url = `http://www.omdbapi.com/?i=${data}&apikey=f0d64179`
     const result = await fetch(url)
-    const result_json = result.json()
-    return result_json
+    const result_json = await result.json()
+    setMovies(r=>[...r,result_json])
   }
   const readData=async(searcher)=>{
-    console.log(await fetchData())
+    await fetchData(searcher)
 
   }
   const handleChange = (event) => {
@@ -44,7 +45,7 @@ const SearchMovie = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchData();
+    fetchData(search);
   };
 
   return (

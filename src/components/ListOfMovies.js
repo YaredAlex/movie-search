@@ -14,25 +14,37 @@ const CheckIfItIsaddToWatchList = ({ item, list, handleOnClick }) => {
       if (list[i].Title === item.Title) {
         flag = 1;
         return (
+          <div className="watchlist">
+          <p>{item.Runtime}</p>
+          <p>{item.Genre}</p>
           <div className="addto-watchlist">
-            <FontAwesomeIcon icon={faCheck} className="plus-icon" />
-            <span>added</span>
+          <FontAwesomeIcon icon={faCheck} className="plus-icon" />
+          <span>added</span>
           </div>
+        </div>
         );
       }
     }
     if (flag === 0)
       return (
-        <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+        <div className="watchlist" onClick={() => handleOnClick(item)}>
+          <p>{item.Runtime}</p>
+          <p>{item.Genre}</p>
+          <div className="addto-watchlist">
           <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
           <span>Watchlist</span>
+          </div>
         </div>
       );
   } else
     return (
-      <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+      <div className="watchlist" onClick={() => handleOnClick(item)}>
+        <p>{item.Runtime}</p>
+        <p>{item.Genre}</p>
+        <div className="addto-watchlist">
         <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
         <span>Watchlist</span>
+        </div>
       </div>
     );
 };
@@ -65,7 +77,9 @@ const ListOfMovies = ({ searchResult }) => {
                         className="star-icon"
                         color="#FFDF00"
                       />
+                      <span style={{marginLeft:'5px'}}>{item.imdbRating}</span>
                     </span>
+                    
                   </span>
                   {
                     <CheckIfItIsaddToWatchList
@@ -74,7 +88,9 @@ const ListOfMovies = ({ searchResult }) => {
                       handleOnClick={handleOnClick}
                     />
                   }
+                   <p className="movie-plot">{item.Plot}</p>
                 </div>
+               
               </li>
             ))}
           </ul>

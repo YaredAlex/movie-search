@@ -41,15 +41,18 @@ const WatchList = () => {
                       className="star-icon"
                       color="#FFDF00"
                     />
+                     <span style={{marginLeft:'5px'}}>{item.imdbRating}</span>
                   </span>
                 </span>
-                <div
-                  className="addto-watchlist"
-                  onClick={() => handleOnClick(item)}
-                >
-                  <FontAwesomeIcon icon={faMinusCircle} className="plus-icon" />
-                  <span>remove</span>
-                </div>
+            <div className="watchlist" onClick={() => handleOnClick(item)}>
+        <p>{item.Runtime}</p>
+        <p>{item.Genre}</p>
+        <div className="addto-watchlist">
+        <FontAwesomeIcon icon={faMinusCircle} className="plus-icon" />
+        <span>remove</span>
+        </div>
+      </div>
+      <p className="movie-plot">{item.Plot}</p>
               </div>
             </li>
           ))}
