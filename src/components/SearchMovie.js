@@ -7,20 +7,22 @@ import ListOfMovies from "./ListOfMovies";
 const SearchMovie = () => {
   const [search, setSearch] = useState("");
   const [movie, setMovies] = useState([]);
-  const fetchData = () => {
-    let url = `http://www.omdbapi.com/?s=${search}&apikey=f0d64179`;
+  const [error, setError] = useState("");
+  const fetchData = (searcher) => {
+    let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
     fetch(url, {
       method: "get",
     })
       .then((res) => res.json())
       .then((res) => {
+        setError("");
         if (res.Response === "True") setMovies(res.Search);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => setError("unable to connect please check your Internet!"));
   };
   const handleChange = (event) => {
     setSearch(event.target.value);
-    fetchData();
+    fetchData(event.target.value);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,16 +50,19 @@ const SearchMovie = () => {
         </form>
         <ListOfMovies searchResult={movie} />
       </div>
-      <img src={moviesvg} alt="alt" className="movie-svg" />
-      <p
-        style={{
-          textAlign: "center",
-          color: "#d5d5d5",
-          fontSize: "20px",
-        }}
-      >
-        Start exploring
-      </p>
+      {error ? <p style={{ textAlign: "center" }}>{error}</p> : ""}
+      <div className="movie-svg-container">
+        <img src={moviesvg} alt="alt" className="movie-svg" />
+        <p
+          style={{
+            textAlign: "center",
+            color: "#d5d5d5",
+            fontSize: "20px",
+          }}
+        >
+          Start exploring
+        </p>
+      </div>
     </div>
   );
 };

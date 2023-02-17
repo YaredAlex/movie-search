@@ -1,13 +1,16 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import NavigationBar from "./components/NavigationBar";
-import SearchMovie from "./components/SearchMovie";
+import HomePage from "./pages/HomePage";
+import WatchList from "./pages/WatchList";
 
 function App() {
   return (
-    <div className="App">
-      <NavigationBar />
-      <SearchMovie />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/watch-list" element={<WatchList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

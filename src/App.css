@@ -7,6 +7,9 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --var-color: rgb(213, 213, 213);
+}
 /*          
 ------------------------ navigation ----------------------------------
 */
@@ -18,7 +21,7 @@
 .hero-section {
   position: absolute;
   height: 300px;
-  background: url("https://c4.wallpaperflare.com/wallpaper/862/449/162/jack-reacher-star-wars-interstellar-movie-john-wick-wallpaper-preview.jpg")
+  background: url("https://4kwallpapers.com/images/wallpapers/mortal-kombat-2021-movies-poster-3840x2160-4902.jpg")
     no-repeat center center;
   background-size: cover;
   width: 100%;
@@ -34,6 +37,19 @@
   display: flex;
   color: white;
   font-size: 20px;
+  justify-content: space-evenly;
+  height: 200px;
+  align-items: center;
+}
+.nav-bar ul li a {
+  text-decoration: none;
+  color: white;
+}
+.nav-bar ul li .active {
+  font-size: 40px;
+}
+.nav-bar ul li:hover {
+  cursor: pointer;
 }
 /*
 ------------------------ Search ---------------------------------------
@@ -87,6 +103,10 @@
   margin: 0 auto;
   display: block;
 }
+.movie-svg-container {
+  margin-top: 100px;
+}
+
 /*
 ---list of moveis
 */
@@ -116,4 +136,65 @@
 .movie-title {
   font-weight: 500;
   font-size: 22px;
+}
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+/*
+------adding to watch list
+*/
+.addto-watchlist {
+  transition: all 0.3s ease-in-out;
+  width: 150px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addto-watchlist:hover {
+  background-color: rgb(219, 219, 219);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addto-watchlist:active {
+  background-color: rgb(183, 183, 183);
+}
+.right-to-img {
+}
+.plus-icon {
+  margin-right: 5px;
+}
+/*
+
+*/
+.watch-list-info {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+.watch-list-info button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+.watch-list-info button:hover {
+  background-color: #eee;
+  border-radius: 8px;
+}
+.watch-list-info p {
+  text-align: center;
+  font-size: large;
+  color: var(--var-color);
+  font-size: 20px;
+}
+.watch-list-of-movies {
+  top: 300px;
 }

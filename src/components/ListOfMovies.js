@@ -1,7 +1,49 @@
-import React from "react";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import React, { useContext, useState } from "react";
+import {
+  faStar,
+  faPlusCircle,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserContext } from "./ContextProvider";
+
+const CheckIfItIsaddToWatchList = ({ item, list, handleOnClick }) => {
+  if (list.length > 0) {
+    let flag = 0;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].Title === item.Title) {
+        flag = 1;
+        return (
+          <div className="addto-watchlist">
+            <FontAwesomeIcon icon={faCheck} className="plus-icon" />
+            <span>added</span>
+          </div>
+        );
+      }
+    }
+    if (flag === 0)
+      return (
+        <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+          <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
+          <span>Watchlist</span>
+        </div>
+      );
+  } else
+    return (
+      <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+        <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
+        <span>Watchlist</span>
+      </div>
+    );
+};
+
 const ListOfMovies = ({ searchResult }) => {
+  const { setData } = useContext(UserContext);
+  const [list, setList] = useState([]);
+  const handleOnClick = (item) => {
+    setList((l) => [...l, item]);
+    setData((data) => [...data, item]);
+  };
   if (searchResult.length > 0)
     return (
       <div className="list-of-movies">
@@ -14,9 +56,9 @@ const ListOfMovies = ({ searchResult }) => {
                   alt={item.Title}
                   className="poster-img"
                 />
-                <div>
-                  <h2 className="movie-title">
-                    {item.Title}{" "}
+                <div className="right-to-img">
+                  <span className="title-wrapper">
+                    <h2 className="movie-title">{item.Title} </h2>
                     <span>
                       <FontAwesomeIcon
                         icon={faStar}
@@ -24,7 +66,14 @@ const ListOfMovies = ({ searchResult }) => {
                         color="#FFDF00"
                       />
                     </span>
-                  </h2>
+                  </span>
+                  {
+                    <CheckIfItIsaddToWatchList
+                      item={item}
+                      list={list}
+                      handleOnClick={handleOnClick}
+                    />
+                  }
                 </div>
               </li>
             ))}
