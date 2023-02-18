@@ -9,7 +9,7 @@ const SearchMovie = () => {
   const [movie, setMovies] = useState([]);
   const [error, setError] = useState("");
   const fetchData = (searcher) => {
-    let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
+    let url = `http://www.omdbapi.com/?i=tt3896198&s=${searcher}&apikey=f0d64179`;
     fetch(url, {
       method: "get",
     })
@@ -27,6 +27,7 @@ const SearchMovie = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchData();
+    console.log(movie);
   };
 
   return (

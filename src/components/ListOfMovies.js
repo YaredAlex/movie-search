@@ -44,44 +44,45 @@ const ListOfMovies = ({ searchResult }) => {
     setList((l) => [...l, item]);
     setData((data) => [...data, item]);
   };
-  if (searchResult.length > 0)
-    return (
-      <div className="list-of-movies">
-        <div>
-          <ul>
-            {searchResult.map((item, index) => (
-              <li key={index}>
-                <img
-                  src={item.Poster}
-                  alt={item.Title}
-                  className="poster-img"
-                />
-                <div className="right-to-img">
-                  <span className="title-wrapper">
-                    <h2 className="movie-title">{item.Title} </h2>
-                    <span>
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        className="star-icon"
-                        color="#FFDF00"
-                      />
+  if (Array.isArray(searchResult))
+    if (searchResult.length > 0)
+      return (
+        <div className="list-of-movies">
+          <div>
+            <ul>
+              {searchResult.map((item, index) => (
+                <li key={index}>
+                  <img
+                    src={item.Poster}
+                    alt={item.Title}
+                    className="poster-img"
+                  />
+                  <div className="right-to-img">
+                    <span className="title-wrapper">
+                      <h2 className="movie-title">{item.Title} </h2>
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faStar}
+                          className="star-icon"
+                          color="#FFDF00"
+                        />
+                      </span>
                     </span>
-                  </span>
-                  {
-                    <CheckIfItIsaddToWatchList
-                      item={item}
-                      list={list}
-                      handleOnClick={handleOnClick}
-                    />
-                  }
-                </div>
-              </li>
-            ))}
-          </ul>
+                    {
+                      <CheckIfItIsaddToWatchList
+                        item={item}
+                        list={list}
+                        handleOnClick={handleOnClick}
+                      />
+                    }
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
-  else return;
+      );
+    else return;
 };
 
 export default ListOfMovies;
