@@ -5,8 +5,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../components/ContextProvider";
-import NavigationBar from "../components/NavigationBar";
 
 const WatchList = () => {
   const { data, setData } = useContext(UserContext);
@@ -19,13 +19,14 @@ const WatchList = () => {
   return (
     <div>
       {" "}
-      <NavigationBar />
       <div className="watch-list-info">
-        <p>Your watch list is empty</p>
-        <button>
+        <p className="isempty">Your watch list is empty</p>
+        <Link to="/" className="btn">
           <FontAwesomeIcon icon={faPlusCircle} />
-          Let's add movies
-        </button>
+          <p style={{ marginLeft: "10px" }} className="letsadd">
+            Let's add movies
+          </p>
+        </Link>
       </div>
       <div className="list-of-movies watch-list-of-movies">
         <ul>
@@ -41,18 +42,21 @@ const WatchList = () => {
                       className="star-icon"
                       color="#FFDF00"
                     />
-                     <span style={{marginLeft:'5px'}}>{item.imdbRating}</span>
+                    <span style={{ marginLeft: "5px" }}>{item.imdbRating}</span>
                   </span>
                 </span>
-            <div className="watchlist" onClick={() => handleOnClick(item)}>
-        <p>{item.Runtime}</p>
-        <p>{item.Genre}</p>
-        <div className="addto-watchlist">
-        <FontAwesomeIcon icon={faMinusCircle} className="plus-icon" />
-        <span>remove</span>
-        </div>
-      </div>
-      <p className="movie-plot">{item.Plot}</p>
+                <div className="watchlist" onClick={() => handleOnClick(item)}>
+                  <p>{item.Runtime}</p>
+                  <p>{item.Genre}</p>
+                  <div className="addto-watchlist">
+                    <FontAwesomeIcon
+                      icon={faMinusCircle}
+                      className="plus-icon"
+                    />
+                    <span>remove</span>
+                  </div>
+                </div>
+                <p className="movie-plot">{item.Plot}</p>
               </div>
             </li>
           ))}
