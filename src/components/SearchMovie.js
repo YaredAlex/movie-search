@@ -8,26 +8,42 @@ const SearchMovie = () => {
   const [search, setSearch] = useState("");
   const [movie, setMovies] = useState([]);
   const [error, setError] = useState("");
-  const fetchData = (searcher) => {
-    let url = `http://www.omdbapi.com/?i=tt3896198&s=${searcher}&apikey=f0d64179`;
-    fetch(url, {
+  const [detail, setDetail] = useState({});
+  const fetchData = async (searcher) => {
+    setMovies([]);
+    let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
+    const data = fetch(url, {
       method: "get",
     })
       .then((res) => res.json())
       .then((res) => {
         setError("");
-        if (res.Response === "True") setMovies(res.Search);
+        if (res.Response === "True") {
+          res.Search.map((elem) => {
+            return getDetail(elem.imdbID);
+          });
+        }
       })
       .catch((e) => setError("unable to connect please check your Internet!"));
+    return data;
+  };
+  const getDetail = async (data) => {
+    let detail;
+    let url = `http://www.omdbapi.com/?i=${data}&apikey=f0d64179`;
+    const result = await fetch(url);
+    const result_json = await result.json();
+    setMovies((r) => [...r, result_json]);
+  };
+  const readData = async (searcher) => {
+    await fetchData(searcher);
   };
   const handleChange = (event) => {
     setSearch(event.target.value);
-    fetchData(event.target.value);
+    readData(event.target.value);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchData();
-    console.log(movie);
+    fetchData(search);
   };
 
   return (

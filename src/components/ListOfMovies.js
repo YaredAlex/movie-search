@@ -14,25 +14,37 @@ const CheckIfItIsaddToWatchList = ({ item, list, handleOnClick }) => {
       if (list[i].Title === item.Title) {
         flag = 1;
         return (
+          <div className="watchlist">
+          <p>{item.Runtime}</p>
+          <p>{item.Genre}</p>
           <div className="addto-watchlist">
-            <FontAwesomeIcon icon={faCheck} className="plus-icon" />
-            <span>added</span>
+          <FontAwesomeIcon icon={faCheck} className="plus-icon" />
+          <span>added</span>
           </div>
+        </div>
         );
       }
     }
     if (flag === 0)
       return (
-        <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+        <div className="watchlist" onClick={() => handleOnClick(item)}>
+          <p>{item.Runtime}</p>
+          <p>{item.Genre}</p>
+          <div className="addto-watchlist">
           <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
           <span>Watchlist</span>
+          </div>
         </div>
       );
   } else
     return (
-      <div className="addto-watchlist" onClick={() => handleOnClick(item)}>
+      <div className="watchlist" onClick={() => handleOnClick(item)}>
+        <p>{item.Runtime}</p>
+        <p>{item.Genre}</p>
+        <div className="addto-watchlist">
         <FontAwesomeIcon icon={faPlusCircle} className="plus-icon" />
         <span>Watchlist</span>
+        </div>
       </div>
     );
 };
@@ -44,6 +56,7 @@ const ListOfMovies = ({ searchResult }) => {
     setList((l) => [...l, item]);
     setData((data) => [...data, item]);
   };
+<<<<<<< HEAD
   if (Array.isArray(searchResult))
     if (searchResult.length > 0)
       return (
@@ -80,6 +93,46 @@ const ListOfMovies = ({ searchResult }) => {
               ))}
             </ul>
           </div>
+=======
+  if (searchResult.length > 0)
+    return (
+      <div className="list-of-movies">
+        <div>
+          <ul>
+            {searchResult.map((item, index) => (
+              <li key={index}>
+                <img
+                  src={item.Poster}
+                  alt={item.Title}
+                  className="poster-img"
+                />
+                <div className="right-to-img">
+                  <span className="title-wrapper">
+                    <h2 className="movie-title">{item.Title} </h2>
+                    <span>
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        className="star-icon"
+                        color="#FFDF00"
+                      />
+                      <span style={{marginLeft:'5px'}}>{item.imdbRating}</span>
+                    </span>
+                    
+                  </span>
+                  {
+                    <CheckIfItIsaddToWatchList
+                      item={item}
+                      list={list}
+                      handleOnClick={handleOnClick}
+                    />
+                  }
+                   <p className="movie-plot">{item.Plot}</p>
+                </div>
+               
+              </li>
+            ))}
+          </ul>
+>>>>>>> af2e626dbc128150c13e8095632f3afb52bcb7b0
         </div>
       );
     else return;
