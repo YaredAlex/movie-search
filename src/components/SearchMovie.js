@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import moviesvg from "./movieclip.svg";
 import ListOfMovies from "./ListOfMovies";
 
@@ -8,7 +8,6 @@ const SearchMovie = () => {
   const [search, setSearch] = useState("");
   const [movie, setMovies] = useState([]);
   const [error, setError] = useState("");
-  const [detail, setDetail] = useState({});
   const fetchData = async (searcher) => {
     setMovies([]);
     let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
@@ -18,6 +17,10 @@ const SearchMovie = () => {
       .then((res) => res.json())
       .then((res) => {
         setError("");
+        if (res.Error === "Movie not found!")
+          setError(
+            "Unable to find what you are looking for please try another search"
+          );
         if (res.Response === "True") {
           res.Search.map((elem) => {
             return getDetail(elem.imdbID);
@@ -67,19 +70,33 @@ const SearchMovie = () => {
         </form>
         <ListOfMovies searchResult={movie} />
       </div>
-      {error ? <p style={{ textAlign: "center" }}>{error}</p> : ""}
-      <div className="movie-svg-container">
-        <img src={moviesvg} alt="alt" className="movie-svg" />
+      {error ? (
         <p
+          className="not-found-error"
           style={{
             textAlign: "center",
+            margin: "200px auto 0",
             color: "#d5d5d5",
             fontSize: "20px",
+            maxWidth: "450px",
           }}
         >
-          Start exploring
+          {error}
         </p>
-      </div>
+      ) : (
+        <div className="movie-svg-container">
+          <img src={moviesvg} alt="alt" className="movie-svg" />
+          <p
+            style={{
+              textAlign: "center",
+              color: "#d5d5d5",
+              fontSize: "20px",
+            }}
+          >
+            Start exploring
+          </p>
+        </div>
+      )}
     </div>
   );
 };
