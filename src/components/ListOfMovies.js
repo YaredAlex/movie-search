@@ -50,7 +50,7 @@ const CheckIfItIsaddToWatchList = ({ item, list, handleOnClick }) => {
 };
 
 const ListOfMovies = ({ searchResult }) => {
-  const { setData } = useContext(UserContext);
+  const { setData, data } = useContext(UserContext);
   const [list, setList] = useState([]);
   const handleOnClick = (item) => {
     setList((l) => [...l, item]);
@@ -86,7 +86,7 @@ const ListOfMovies = ({ searchResult }) => {
                     {
                       <CheckIfItIsaddToWatchList
                         item={item}
-                        list={list}
+                        list={data}
                         handleOnClick={handleOnClick}
                       />
                     }
