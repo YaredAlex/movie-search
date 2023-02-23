@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import moviesvg from "./movieclip.svg";
 import ListOfMovies from "./ListOfMovies";
+import { UserContext } from "./ContextProvider";
 
 const SearchMovie = () => {
-  const [search, setSearch] = useState("");
-  const [movie, setMovies] = useState([]);
   const [error, setError] = useState("");
+  const { setList, list, search, setSearch } = useContext(UserContext);
   const fetchData = async (searcher) => {
-    setMovies([]);
+    setList([]);
     let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
     const data = fetch(url, {
       method: "get",
@@ -35,7 +35,7 @@ const SearchMovie = () => {
     let url = `http://www.omdbapi.com/?i=${data}&apikey=f0d64179`;
     const result = await fetch(url);
     const result_json = await result.json();
-    setMovies((r) => [...r, result_json]);
+    setList((r) => [...r, result_json]);
   };
   const readData = async (searcher) => {
     await fetchData(searcher);
@@ -68,7 +68,7 @@ const SearchMovie = () => {
           />
           <button className="submit-button">Search</button>
         </form>
-        <ListOfMovies searchResult={movie} />
+        <ListOfMovies searchResult={list} />
       </div>
       {error ? (
         <p
