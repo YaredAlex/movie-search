@@ -150,6 +150,9 @@
   align-items: center;
   gap: 20px;
 }
+.title-wrapper span{
+  min-width: 50px;
+}
 .movie-plot {
   color: rgb(92, 92, 92);
   max-width: 600px;
@@ -222,5 +225,9 @@
 @media screen and (max-width:500px){
   .search-form {
     width:95%;
+  }
+  .list-of-movies ul li {
+    flex-direction:column;
+    align-items: center;
   }
 }
