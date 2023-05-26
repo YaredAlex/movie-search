@@ -10,7 +10,7 @@ const SearchMovie = () => {
   const { setList, list, search, setSearch } = useContext(UserContext);
   const fetchData = async (searcher) => {
     setList([]);
-    let url = `http://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
+    let url = `https://www.omdbapi.com/?s=${searcher}&apikey=f0d64179`;
     const data = fetch(url, {
       method: "get",
     })
@@ -32,7 +32,7 @@ const SearchMovie = () => {
   };
   const getDetail = async (data) => {
     let detail;
-    let url = `http://www.omdbapi.com/?i=${data}&apikey=f0d64179`;
+    let url = `https://www.omdbapi.com/?i=${data}&apikey=f0d64179`;
     const result = await fetch(url);
     const result_json = await result.json();
     setList((r) => [...r, result_json]);
