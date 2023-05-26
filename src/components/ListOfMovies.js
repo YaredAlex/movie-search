@@ -63,7 +63,7 @@ const ListOfMovies = ({ searchResult }) => {
           <div>
             <ul>
               {searchResult.map((item, index) => (
-                <li key={index}>
+                <li key={index} className="movie">
                   <img
                     src={item.Poster}
                     alt={item.Title}
