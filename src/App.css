@@ -219,3 +219,8 @@
 .watch-list-of-movies {
   top: 300px;
 }
+@media screen and (max-width:500px){
+  .search-form {
+    width:95%;
+  }
+}
